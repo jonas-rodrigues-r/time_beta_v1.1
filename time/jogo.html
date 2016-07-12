@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+    <head>
+
+        <meta charset="UTF-8" />
+        <title>TIME</title>
+        <body>
+<!-- AKi buscamos chamar as classe responsáveis por gera tela de iniciar ,parte bruta do código e o framework-->
+        <script src="js/phaser.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/sprite.js"></script>
+
+    </head>
+
+
+<style >
+
+    canvas{
+        position:  absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        margin: auto;
+    }
+    </style>
+    <body>
+<script>
+/* formas e desenho dimençoes e status do jogo*/
+    var canvas,ctx,ALTURA,LARGURA,status;
+
+   var estado={pause:0,on:1,off:2},
+        ALTURA=window.innerHeight;
+        LARGURA= window.innerWidth;
+
+        if(LARGURA>=500){
+            LARGURA=500;
+            ALTURA=600;
+        }
+  //Aki local onde o play vai iniciar o jogo      
+function criaPlay(){
+    //defini o tamanho do canvas Play imagem
+    canvas=document.createElement("canvas");
+        canvas.width=LARGURA;
+        canvas.height=ALTURA;
+        canvas.style.border="1px solid #000";
+        // estabelece que as noções de profundidade seja 2d
+        ctx=canvas.getContext("2d");
+        document.body.appendChild(canvas);
+        //dispara o evento de clika que o play da para inicar o jogo 
+        document.addEventListener("dblclick", clique);
+        //pega a imagem de Play
+        img= new Image();
+        img.src="imagens/go.png"
+        roda();
+
+
+
+}
+function criaFim(){
+//mesma função do Play porem agora para reniciar o jogo
+         canvas=document.createElement("canvas");
+        canvas.width=LARGURA;
+        canvas.height=ALTURA;
+        canvas.style.border="1px solid #000";
+
+        ctx=canvas.getContext("2d");
+        document.body.appendChild(canvas);
+        document.addEventListener("dblclick", clique);
+        img= new Image();
+        img.src="imagens/fim.png"
+
+        status.estado.on;
+
+
+
+}
+// chama a janela que posibilita inicar o jogo
+    function roda(){
+
+    desenha();
+    window.requestAnimationFrame(roda);
+}
+function desenha(){
+    bg.desenha(0,0);
+ 
+
+
+
+
+}
+function clique(){
+//jogo ganha um novo inicio (reload) nesse estatos 
+    if(status==estado.on){
+        window.location.href=window.location;
+    
+        //redimensionar o jogo e reanima os metodos ja utilizados e passando o estado para on
+    }else if(status==estado.pause){
+        
+    game = new Phaser.Game(500, 600, Phaser.AUTO, '', {
+
+        preload: carregaAssets,
+        create: criaCenario, 
+        update: atualizaJogo
+
+    });
+
+        status=estado.on;
+
+
+    }else if(status==estado.off){
+        status=estado.pause;
+
+         
+
+
+    }
+
+}
+//da inicio a tela de Play
+ criaPlay();
+</script>
+</body>
+</html>
